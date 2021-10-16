@@ -1,0 +1,28 @@
+@import '../../assest/style/colors.scss';
+@import '../../assest/style/extends.scss';
+
+.header {
+  display: flex;
+  height: 50px;
+  align-items: center;
+  background: $DEEP_ORANGE;
+  padding: 0 20px;
+  @include shadow;
+  .left {
+    display: flex;
+    flex: 1;
+    .brand {
+      color: $WHITE;
+      font-weight: 700;
+      font-size: 18px;
+      cursor: pointer;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  .right {
+    display: flex;
+    flex: 1;
+  }
+}

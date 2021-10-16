@@ -1,0 +1,52 @@
+[
+  {
+    "id": "477eff49-79fa-4240-a5cc-940e833ee40b",
+    "name": {
+      "title": "Mr",
+      "first": "Dwight",
+      "last": "Jensen"
+    },
+    "email": "dwight.jensen@example.com",
+    "password": "b3b57dda899bffa45604938db423433a"
+  },
+  {
+    "id": "65a0093c-01e5-4010-a3b1-9a64db76e1ff",
+    "name": {
+      "title": "Madame",
+      "first": "Annika",
+      "last": "Lemoine"
+    },
+    "email": "annika.lemoine@example.com",
+    "password": "217d18eee0e9b93c01990503d4b3c022"
+  },
+  {
+    "id": "8d1ddb97-2c64-4351-9171-de29cd7afb49",
+    "name": {
+      "title": "Mr",
+      "first": "Soufiane",
+      "last": "Keuter"
+    },
+    "email": "soufiane.keuter@example.com",
+    "password": "7d9dc7089c998d9a0bcb0b5afffc85dc"
+  },
+  {
+    "id": "9fbb0d54-286f-430d-81ae-18ce87920ea4",
+    "name": {
+      "title": "Mr",
+      "first": "Daniel",
+      "last": "Smith"
+    },
+    "email": "daniel.smith@example.com",
+    "password": "b60434f7c37d6640f74fea7a9c62048c"
+  },
+  {
+    "id": "c925b3fb-b1da-4676-aecb-233e823d44bd",
+    "name": {
+      "title": "Mr",
+      "first": "Sergio",
+      "last": "Santana"
+    },
+    "email": "sergio.santana@example.com",
+    "password": "2a4849b5bbde733f09a14f31ecbeb77c"
+  }
+]

@@ -40,7 +40,7 @@ ProtectedRoute.defaultProps = {
   location: null,
 };
 ProtectedRoute.propTypes = {
-  component: PropTypes.node,
+  component: PropTypes.any,
   path: PropTypes.string,
   location: PropTypes.string,
 };

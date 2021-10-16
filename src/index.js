@@ -7,8 +7,11 @@ import enUs from 'antd/lib/locale/en_US';
 import store, { history } from './store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { makeServer } from './server';
 import 'antd/dist/antd.css';
 import './index.css';
+
+makeServer();
 
 ReactDOM.render(
   <Provider store={store}>

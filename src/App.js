@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Home from './containers/Home';
+import Login from './containers/Auth/Login';
 
 const ProtectedRoute = ({ component: Comp, path, ...rest }) => {
   let loggedIn = false;
@@ -29,7 +30,8 @@ const ProtectedRoute = ({ component: Comp, path, ...rest }) => {
 
 const App = () => (
   <Switch>
-    <Route exact path="/" component={Home} />
+    <ProtectedRoute exact path="/" component={Home} />
+    <Route path="/login" component={Login} />
   </Switch>
 );
 ProtectedRoute.defaultProps = {

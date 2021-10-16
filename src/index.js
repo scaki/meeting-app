@@ -2,15 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
+import { ConfigProvider } from 'antd';
+import enUs from 'antd/lib/locale/en_US';
 import store, { history } from './store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'antd/dist/antd.css';
 import './index.css';
 
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <App />
+      <ConfigProvider locale={enUs}>
+        <App />
+      </ConfigProvider>
     </ConnectedRouter>
   </Provider>,
   document.getElementById('root')

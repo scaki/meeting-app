@@ -1,0 +1,18 @@
+@import '../../../assest/style/colors.scss';
+@import '../../../assest/style/extends.scss';
+
+.loginPage {
+  display: flex;
+  height: calc(100vh - 50px);
+  justify-content: center;
+  align-items: center;
+  background: none;
+  .loginContainer {
+    display: flex;
+    width: 15%;
+    background: $WHITE;
+    padding: 20px 10px;
+    border-radius: 4px;
+    @include shadow;
+  }
+}

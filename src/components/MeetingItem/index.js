@@ -41,17 +41,3 @@ SCMeetingItem.propTypes = {
   item: PropTypes.object.isRequired,
 };
 export default SCMeetingItem;
-{
-  /* <div
-      role="button"
-      tabIndex={0}
-      className={styles.meetingItem}
-      style={item.status === 'CANCEL' ? { color: 'red' } : null}
-    >
-      <div className={styles.status}>
-        <Badge color={getBadgeColor(item.status)} />
-      </div>
-      <div className={styles.time}>{moment(item.date).format('HH:mm')}</div>
-      <div className={styles.title}>{item.title}</div>
-    </div> */
-}

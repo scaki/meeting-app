@@ -97,7 +97,7 @@ export function makeServer() {
           const uid = getUserIdFromToken(Authorization);
           const body = JSON.parse(request.requestBody);
           const checkMeeting = schema.db.meetings.find({ date: body.date });
-          if (checkMeeting !== null) {
+          if (checkMeeting === null) {
             const data = {
               id: createUUID(),
               title: body.title,
@@ -161,7 +161,7 @@ export function makeServer() {
           const body = JSON.parse(request.requestBody);
 
           const checkMeeting = schema.db.meetings.find({ date: body.date });
-          if (checkMeeting !== null) {
+          if (checkMeeting === null) {
             const meeting = schema.db.meetings.update(
               {
                 id,

@@ -9,10 +9,11 @@ import SCMeetingItem from '../../components/MeetingItem';
 import { showDrawer } from '../../actions/drawer';
 import DateDetail from '../DateDetail';
 import InfoLine from './infoLine';
+import { selectMeetingsSortByDate } from '../../reducers/meeting';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const meeting = useSelector(state => state.meeting).toJS();
+  const meeting = useSelector(state => selectMeetingsSortByDate(state.meeting));
 
   useEffect(() => {
     dispatch(loadMeetings());

@@ -21,7 +21,11 @@ const DateDetail = ({ date }) => {
   const [items, setItems] = useState([]);
 
   const getMeetings = () => {
-    dispatch(loadMeetingsByDate(date, res => setItems(res)));
+    dispatch(
+      loadMeetingsByDate(date, res =>
+        setItems(res.sort((a, b) => new Date(a.date) - new Date(b.date)))
+      )
+    );
   };
 
   useEffect(() => {
@@ -42,7 +46,7 @@ const DateDetail = ({ date }) => {
     const meetings = items;
     const meetingIndex = meetings.findIndex(x => x.id === res.id);
     meetings[meetingIndex] = res;
-    setItems(meetings);
+    setItems(meetings.sort((a, b) => new Date(a.date) - new Date(b.date)));
     dispatch(putMeeting(res));
   };
 

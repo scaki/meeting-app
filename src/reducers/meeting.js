@@ -24,4 +24,11 @@ function meetingReducer(state = initialState, action) {
   }
 }
 
+function selectMeetingsSortByDate(state) {
+  const meetings = state.toJS();
+  return meetings.sort((a, b) => new Date(a.date) - new Date(b.date));
+}
+
+export { selectMeetingsSortByDate };
+
 export default meetingReducer;

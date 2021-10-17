@@ -19,14 +19,18 @@ const AddMeeting = ({ data }) => {
     if (data.isEdit) {
       dispatch(
         editMeeting({ ...values, id: data.values.id }, res => {
-          data.onSubmit(res);
+          if (data.onSubmit) {
+            data.onSubmit(res);
+          }
           dispatch(hideModal());
         })
       );
     } else {
       dispatch(
         postMeeting(values, res => {
-          data.onSubmit(res);
+          if (data.onSubmit) {
+            data.onSubmit(res);
+          }
           dispatch(hideModal());
         })
       );
@@ -70,6 +74,7 @@ const AddMeeting = ({ data }) => {
                 { value: 'ACTIVE', label: 'Active' },
                 { value: 'CANCEL', label: 'Cancel' },
               ]}
+              rules={[{ required: true }]}
             />
           </Col>
         </Row>
@@ -83,6 +88,7 @@ const AddMeeting = ({ data }) => {
               { value: 'INHOUSE', label: 'In House' },
               { value: 'ONLINE', label: 'Online' },
             ]}
+            rules={[{ required: true }]}
           />
         </Col>
       </Row>

@@ -35,6 +35,16 @@ export function makeServer() {
       message: 'There is a problem. Please contact the administrator',
     }
   );
+
+  const notAccept = message =>
+    new Response(
+      406,
+      {},
+      {
+        error: 'NOT_ACCEPT',
+        message,
+      }
+    );
   const server = new Server({
     serializers: {
       application: JSONAPISerializer,
@@ -69,25 +79,45 @@ export function makeServer() {
         return userNotFound;
       });
 
+      this.get('/user/me', (schema, request) => {
+        const { Authorization } = request.requestHeaders;
+        try {
+          const uid = getUserIdFromToken(Authorization);
+          const user = schema.db.users.find(uid);
+          user.password = undefined;
+          return user;
+        } catch (error) {
+          return userNotFound;
+        }
+      });
+
       this.post('/meets', (schema, request) => {
         const { Authorization } = request.requestHeaders;
         try {
           const uid = getUserIdFromToken(Authorization);
           const body = JSON.parse(request.requestBody);
-          const data = {
-            id: createUUID(),
-            title: body.title,
-            description: body.description,
-            date: body.date,
-            status: 'ACTIVE',
-            type: body.type,
-            userId: uid,
-            createdAt: new Date(),
-            deletedAt: null,
-            updatedAt: null,
-          };
-          schema.db.meetings.insert(data);
-          return { ...data, userId: undefined };
+          const checkMeeting = schema.db.meetings.find({ date: body.date });
+          if (checkMeeting !== null) {
+            const data = {
+              id: createUUID(),
+              title: body.title,
+              description: body.description,
+              date: body.date,
+              status: 'ACTIVE',
+              type: body.type,
+              userId: uid,
+              createdAt: new Date(),
+              deletedAt: null,
+              updatedAt: null,
+            };
+            schema.db.meetings.insert(data);
+            return { ...data, userId: undefined };
+          }
+          return notAccept(
+            `You already have an appointment on ${moment(body.date).format(
+              'YYYY-MM-DD HH:mm'
+            )} Please select another date`
+          );
         } catch (error) {
           return badRequest;
         }
@@ -129,22 +159,30 @@ export function makeServer() {
           const uid = getUserIdFromToken(Authorization);
           const { id } = request.params;
           const body = JSON.parse(request.requestBody);
-          const meeting = schema.db.meetings.update(
-            {
-              id,
-              userId: uid,
-              deletedAt: null,
-            },
-            {
-              title: body.title,
-              description: body.description,
-              date: body.date,
-              status: body.status,
-              type: body.type,
-            }
-          );
 
-          return meeting[0];
+          const checkMeeting = schema.db.meetings.find({ date: body.date });
+          if (checkMeeting !== null) {
+            const meeting = schema.db.meetings.update(
+              {
+                id,
+                userId: uid,
+                deletedAt: null,
+              },
+              {
+                title: body.title,
+                description: body.description,
+                date: body.date,
+                status: body.status,
+                type: body.type,
+              }
+            );
+            return meeting[0];
+          }
+          return notAccept(
+            `You already have an appointment on ${moment(body.date).format(
+              'YYYY-MM-DD HH:mm'
+            )} Please select another date`
+          );
         } catch (error) {
           return badRequest;
         }

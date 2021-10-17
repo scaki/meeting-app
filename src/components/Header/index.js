@@ -13,8 +13,8 @@ const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user).toJS();
 
+  const token = localStorage.getItem('token');
   useEffect(() => {
-    const token = localStorage.getItem('token');
     if (token !== null) {
       dispatch(loadMe());
     }
@@ -50,40 +50,41 @@ const Header = () => {
           Meeting App
         </div>
       </div>
-
-      <div className={styles.right}>
-        <SCButton
-          type="button"
-          onClick={onClickAddMeeting}
-          color="white"
-          style={{ fontWeight: 700 }}
-        >
-          Add Meeting
-        </SCButton>
-        <Dropdown overlay={userMenu} trigger="click">
-          <Button type="text" style={{ color: '#FFFFFF', fontWeight: 700 }}>
-            <div className={styles.userInfo}>
-              <div className={styles.avatar}>
-                <Avatar
-                  size="small"
-                  style={{
-                    lineHeight: '25px',
-                    textAlign: 'center',
-                    background: '#37474F',
-                    color: '#FFF',
-                  }}
-                >
-                  {avatar}
-                </Avatar>
+      {token && user.id !== null ? (
+        <div className={styles.right}>
+          <SCButton
+            type="button"
+            onClick={onClickAddMeeting}
+            color="white"
+            style={{ fontWeight: 700 }}
+          >
+            Add Meeting
+          </SCButton>
+          <Dropdown overlay={userMenu} trigger="click">
+            <Button type="text" style={{ color: '#FFFFFF', fontWeight: 700 }}>
+              <div className={styles.userInfo}>
+                <div className={styles.avatar}>
+                  <Avatar
+                    size="small"
+                    style={{
+                      lineHeight: '25px',
+                      textAlign: 'center',
+                      background: '#37474F',
+                      color: '#FFF',
+                    }}
+                  >
+                    {avatar}
+                  </Avatar>
+                </div>
+                <div className={styles.userName}>{userName}</div>
+                <div className={styles.arrow}>
+                  <DownOutlined />
+                </div>
               </div>
-              <div className={styles.userName}>{userName}</div>
-              <div className={styles.arrow}>
-                <DownOutlined />
-              </div>
-            </div>
-          </Button>
-        </Dropdown>
-      </div>
+            </Button>
+          </Dropdown>
+        </div>
+      ) : null}
     </header>
   );
 };

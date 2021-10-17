@@ -96,7 +96,7 @@ const DateDetail = ({ date }) => {
         </Col>
       </Row>
       <Row justify="center">
-        <Col span={8}>
+        <Col span={8} xs={24}>
           <SCButton
             type="button"
             onClick={addMeeting}

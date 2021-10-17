@@ -1,6 +1,7 @@
 import React from 'react';
 import { Col, Row } from 'antd';
 import { useDispatch } from 'react-redux';
+import { push } from 'connected-react-router';
 import SCButton from '../../../components/Button';
 import SCForm, { SCInput } from '../../../components/Form';
 import { signIn } from '../../../actions/auth';
@@ -14,6 +15,7 @@ const Login = () => {
     dispatch(
       signIn(values, res => {
         localStorage.setItem('token', res.token);
+        dispatch(push('/'));
       })
     );
   };

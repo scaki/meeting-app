@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'antd';
 import SCInput from './Input';
+import SCDate from './Date';
+import SCTextarea from './Textarea';
 import styles from './form.module.scss';
 
 const SCForm = ({ name, onSubmit, initialValues, children }) => (
@@ -29,5 +31,5 @@ SCForm.propTypes = {
   children: PropTypes.node,
 };
 
-export { SCInput };
+export { SCInput, SCDate, SCTextarea };
 export default SCForm;

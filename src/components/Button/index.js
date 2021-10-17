@@ -13,11 +13,15 @@ const SCButton = props => {
     disabled,
     block,
     color,
+    style,
   } = props;
 
   const getStyle = () => {
     if (color === 'orange') {
       return styles.orange;
+    }
+    if (color === 'white') {
+      return styles.white;
     }
     return null;
   };
@@ -31,6 +35,7 @@ const SCButton = props => {
       disabled={disabled}
       block={block}
       className={getStyle()}
+      style={style}
     >
       {children}
     </Button>
@@ -46,6 +51,7 @@ SCButton.defaultProps = {
   disabled: false,
   block: false,
   color: 'orange',
+  style: {},
 };
 
 SCButton.propTypes = {
@@ -63,6 +69,7 @@ SCButton.propTypes = {
   loading: PropTypes.bool,
   disabled: PropTypes.bool,
   block: PropTypes.bool,
-  color: PropTypes.oneOf(['orange']),
+  color: PropTypes.oneOf(['orange', 'white']),
+  style: PropTypes.object,
 };
 export default SCButton;

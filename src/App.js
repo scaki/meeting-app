@@ -37,12 +37,12 @@ const App = () => (
 ProtectedRoute.defaultProps = {
   component: null,
   path: null,
-  location: null,
+  location: {},
 };
 ProtectedRoute.propTypes = {
   component: PropTypes.any,
   path: PropTypes.string,
-  location: PropTypes.string,
+  location: PropTypes.object,
 };
 
 export default App;

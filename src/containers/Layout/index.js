@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Header from '../../components/Header';
 import styles from './layout.module.scss';
+import SCModal from '../../components/Modal';
 
 const Layout = props => {
   const { children } = props;
@@ -10,7 +11,10 @@ const Layout = props => {
       <div className={styles.headerWrapper}>
         <Header />
       </div>
-      <div className={styles.content}>{children}</div>
+      <div className={styles.content}>
+        {children}
+        <SCModal />
+      </div>
     </div>
   );
 };

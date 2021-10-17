@@ -1,0 +1,46 @@
+[
+  {
+    "id": "8ba03f59-a8bf-4602-9aa8-af21cdff92a2",
+    "title": "Test meeting",
+    "description": "This is test meeting",
+    "date": "2021-10-20T08:00:00.007Z",
+    "status": "ACTIVE",
+    "userId": "477eff49-79fa-4240-a5cc-940e833ee40b",
+    "createdAt": "2021-10-17T10:00:00.007Z",
+    "deletedAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "5756bdcf-08e6-4382-9ddb-e461a4d8a803",
+    "title": "Test meeting 2",
+    "description": "This is second test meeting",
+    "date": "2021-10-20T10:30:00.007Z",
+    "status": "ACTIVE",
+    "userId": "477eff49-79fa-4240-a5cc-940e833ee40b",
+    "createdAt": "2021-10-17T10:00:00.007Z",
+    "deletedAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "6b807482-7bc6-4f83-8991-1c7818fcbaf2",
+    "title": "Test meeting 3",
+    "description": null,
+    "date": "2021-10-22T15:15:00.007Z",
+    "status": "CANCEL",
+    "userId": "477eff49-79fa-4240-a5cc-940e833ee40b",
+    "createdAt": "2021-10-18T12:00:00.007Z",
+    "deletedAt": null,
+    "updatedAt": null
+  },
+  {
+    "id": "fe18b717-4ab6-4ac7-a58e-0f266d03a602",
+    "title": "Test meeting 4",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    "date": "2021-10-30T10:00:00.007Z",
+    "status": "ACTIVE",
+    "userId": "477eff49-79fa-4240-a5cc-940e833ee40b",
+    "createdAt": "2021-10-20T17:00:00.007Z",
+    "deletedAt": null,
+    "updatedAt": null
+  }
+]

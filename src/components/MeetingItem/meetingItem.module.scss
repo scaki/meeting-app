@@ -2,15 +2,5 @@
 
 .meetingItem {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: 12px;
-  .time {
-    display: flex;
-    width: 40px;
-    font-weight: 700;
-  }
-  .title {
-    font-weight: 600;
-  }
+  margin-bottom: 5px;
 }

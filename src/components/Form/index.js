@@ -4,6 +4,7 @@ import { Form } from 'antd';
 import SCInput from './Input';
 import SCDate from './Date';
 import SCTextarea from './Textarea';
+import SCSelect from './select';
 import styles from './form.module.scss';
 
 const SCForm = ({ name, onSubmit, initialValues, children }) => (
@@ -31,5 +32,5 @@ SCForm.propTypes = {
   children: PropTypes.node,
 };
 
-export { SCInput, SCDate, SCTextarea };
+export { SCInput, SCDate, SCTextarea, SCSelect };
 export default SCForm;

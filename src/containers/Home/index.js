@@ -3,21 +3,20 @@ import { Calendar } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import Layout from '../Layout';
-import styles from './Home.module.scss';
-import { loadMeeting } from '../../actions/meeting';
-import SCMenuItem from '../../components/MeetingItem';
+import styles from './home.module.scss';
+import { loadMeetings } from '../../actions/meeting';
+import SCMeetingItem from '../../components/MeetingItem';
+import { showDrawer } from '../../actions/drawer';
+import DateDetail from '../DateDetail';
+import InfoLine from './infoLine';
 
 const Home = () => {
   const dispatch = useDispatch();
   const meeting = useSelector(state => state.meeting).toJS();
 
   useEffect(() => {
-    dispatch(loadMeeting());
+    dispatch(loadMeetings());
   }, []);
-
-  const onClickItem = id => {
-    console.log(id);
-  };
 
   const dateCellRender = value => {
     const listData = meeting.filter(
@@ -27,16 +26,26 @@ const Home = () => {
     return (
       <>
         {listData.map(item => (
-          <SCMenuItem key={item.id} item={item} onClick={onClickItem} />
+          <SCMeetingItem key={item.id} item={item} />
         ))}
       </>
+    );
+  };
+
+  const selectDate = value => {
+    dispatch(
+      showDrawer({
+        title: 'Details',
+        component: <DateDetail date={value.format('DD-MM-YYYY')} />,
+      })
     );
   };
 
   return (
     <Layout>
       <div className={styles.container}>
-        <Calendar dateCellRender={dateCellRender} />
+        <Calendar dateCellRender={dateCellRender} onSelect={selectDate} />
+        <InfoLine />
       </div>
     </Layout>
   );

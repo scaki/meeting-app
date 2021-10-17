@@ -1,0 +1,8 @@
+.detailItem {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  .label {
+    font-weight: 700;
+  }
+}

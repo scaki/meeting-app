@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Header from '../../components/Header';
 import styles from './layout.module.scss';
 import SCModal from '../../components/Modal';
+import SCDrawer from '../../components/Drawer';
 
 const Layout = props => {
   const { children } = props;
@@ -14,6 +15,7 @@ const Layout = props => {
       <div className={styles.content}>
         {children}
         <SCModal />
+        <SCDrawer />
       </div>
     </div>
   );

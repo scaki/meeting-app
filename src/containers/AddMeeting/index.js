@@ -1,23 +1,44 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
+import moment from 'moment';
 import { Col, Row } from 'antd';
-import SCForm, { SCDate, SCInput, SCTextarea } from '../../components/Form';
+import SCForm, {
+  SCDate,
+  SCInput,
+  SCSelect,
+  SCTextarea,
+} from '../../components/Form';
 import SCButton from '../../components/Button';
-import { postMeeting } from '../../actions/meeting';
+import { editMeeting, postMeeting } from '../../actions/meeting';
 import { hideModal } from '../../actions/modal';
 
-const AddMeeting = () => {
+const AddMeeting = ({ data }) => {
   const dispatch = useDispatch();
   const onSubmit = values => {
-    dispatch(
-      postMeeting(values, () => {
-        dispatch(hideModal());
-      })
-    );
+    if (data.isEdit) {
+      dispatch(
+        editMeeting({ ...values, id: data.values.id }, res => {
+          data.onSubmit(res);
+          dispatch(hideModal());
+        })
+      );
+    } else {
+      dispatch(
+        postMeeting(values, res => {
+          data.onSubmit(res);
+          dispatch(hideModal());
+        })
+      );
+    }
   };
 
+  const getInitials = data.isEdit
+    ? { ...data.values, date: moment(data.values.date) }
+    : {};
+
   return (
-    <SCForm name="AddMeeting" onSubmit={onSubmit}>
+    <SCForm name="AddMeeting" onSubmit={onSubmit} initialValues={getInitials}>
       <Row>
         <Col span={24}>
           <SCInput name="title" label="Title" rules={[{ required: true }]} />
@@ -29,6 +50,8 @@ const AddMeeting = () => {
             name="date"
             label="Date"
             rules={[{ type: 'object', required: true }]}
+            minuteStep={15}
+            showNow={false}
           />
         </Col>
       </Row>
@@ -37,13 +60,53 @@ const AddMeeting = () => {
           <SCTextarea name="description" label="Description" />
         </Col>
       </Row>
+      {data.isEdit ? (
+        <Row>
+          <Col span={24}>
+            <SCSelect
+              name="status"
+              label="Status"
+              options={[
+                { value: 'ACTIVE', label: 'Active' },
+                { value: 'CANCEL', label: 'Cancel' },
+              ]}
+            />
+          </Col>
+        </Row>
+      ) : null}
+      <Row>
+        <Col span={24}>
+          <SCSelect
+            name="type"
+            label="Type"
+            options={[
+              { value: 'INHOUSE', label: 'In House' },
+              { value: 'ONLINE', label: 'Online' },
+            ]}
+          />
+        </Col>
+      </Row>
       <Row justify="end">
         <Col>
-          <SCButton type="submit">Save</SCButton>
+          <SCButton type="submit" color="orange">
+            {data.isEdit ? 'Update' : 'Save'}
+          </SCButton>
         </Col>
       </Row>
     </SCForm>
   );
+};
+
+AddMeeting.defaultProps = {
+  data: {
+    onSubmit: () => {},
+    isEdit: false,
+    values: {},
+  },
+};
+
+AddMeeting.propTypes = {
+  data: PropTypes.object,
 };
 
 export default AddMeeting;

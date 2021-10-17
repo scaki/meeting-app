@@ -1,10 +1,48 @@
+@import '../../assest/style/colors.scss';
+
 .container {
   display: flex;
+  flex-direction: column;
   width: 100%;
   justify-content: center;
   padding: 10px;
-  .message {
-    font-size: 34px;
-    font-weight: bold;
+}
+
+.infoLine {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  padding: 10px;
+  background: $WHITE;
+  .lineItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-right: 1px solid $SWEET_GRAY;
+    padding-right: 10px;
+    margin-right: 10px;
+    .itemType {
+      display: flex;
+      width: 25px;
+      height: 25px;
+      border-radius: 2px;
+    }
+    .canceled {
+      background: #f50;
+    }
+    .inhouse {
+      background: #87d068;
+    }
+    .online {
+      background: #2db7f5;
+    }
+    .text {
+      display: flex;
+      padding-left: 10px;
+      font-weight: 700;
+    }
+    &:last-child {
+      border: 0;
+    }
   }
 }

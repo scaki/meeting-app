@@ -14,6 +14,7 @@ const SCButton = props => {
     block,
     color,
     style,
+    icon,
   } = props;
 
   const getStyle = () => {
@@ -36,6 +37,7 @@ const SCButton = props => {
       block={block}
       className={getStyle()}
       style={style}
+      icon={icon}
     >
       {children}
     </Button>
@@ -50,8 +52,9 @@ SCButton.defaultProps = {
   loading: false,
   disabled: false,
   block: false,
-  color: 'orange',
+  color: null,
   style: {},
+  icon: null,
 };
 
 SCButton.propTypes = {
@@ -71,5 +74,6 @@ SCButton.propTypes = {
   block: PropTypes.bool,
   color: PropTypes.oneOf(['orange', 'white']),
   style: PropTypes.object,
+  icon: PropTypes.node,
 };
 export default SCButton;

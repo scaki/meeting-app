@@ -65,7 +65,7 @@ const Login = () => {
               </Col>
             </Row>
             <Row justify="end">
-              <Col span={5}>
+              <Col xs={12} sm={12} md={12} lg={8} xxl={6}>
                 <SCButton type="submit" block color="orange">
                   Login
                 </SCButton>

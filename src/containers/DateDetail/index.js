@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { Col, Collapse, Row } from 'antd';
+import { Badge, Col, Collapse, Row } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
 import moment from 'moment';
 import {
@@ -55,7 +55,7 @@ const DateDetail = ({ date }) => {
       loadMeeting(id, res =>
         dispatch(
           showModal({
-            title: 'Add Meeting',
+            title: 'Edit Meeting',
             component: <AddMeeting />,
             data: { onSubmit: editMeetingOnSubmit, values: res, isEdit: true },
           })
@@ -65,16 +65,32 @@ const DateDetail = ({ date }) => {
   };
 
   const getTime = meetingDate => moment(meetingDate).format('HH:mm');
+  const getBadgeColor = item => {
+    if (item.status === 'CANCEL') {
+      return '#f50';
+    }
+    if (item.type === 'INHOUSE') {
+      return '#87d068';
+    }
+    if (item.type === 'ONLINE') {
+      return '#2db7f5';
+    }
+  };
+  const getPanelHeader = item => {
+    const time = getTime(item.date);
+    return (
+      <>
+        <Badge color={getBadgeColor(item)} text={`${time} - ${item.title}`} />
+      </>
+    );
+  };
   return (
     <>
       <Row>
         <Col span={24}>
-          <Collapse accordion>
+          <Collapse accordion ghost>
             {items.map(item => (
-              <Panel
-                header={`${getTime(item.date)} - ${item.title}`}
-                key={item.id}
-              >
+              <Panel header={getPanelHeader(item)} key={item.id}>
                 <DetailItem
                   label="Date"
                   content={moment(item.date).format('YYYY-MM-DD HH:mm')}
